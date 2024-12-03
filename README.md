@@ -1,5 +1,4 @@
 # Task4.2-update-for-elastic
-# Task-4.1-Askerov-Rustam-
 #VERY IMPORTANT, you need to install requerment via "pip install -r \PATH.\requerments.txt"
 All explanations inside the files.
 
