@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <!-- next line below is for flexible displaying on the different devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Just description</title>
+        <style>
+
+            h1 {
+                font-size: 3em; 
+                font-family: sans-serif;
+                font-weight: bold; 
+                color: #009879;  
+                text-align: center;
+                text-transform: uppercase; 
+                background-color: #f1f1f1;
+                border-radius: 8px;
+            }
+
+            body button {
+                background-color: #009879; 
+                color: white; 
+                width: 80%;
+                font-size: 50px; 
+                padding: 12px 24px; 
+                border: none; 
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease; 
+                display: block; 
+                margin: 0 auto 15px;
+            }
+
+           
+            body button:hover {
+                background-color: #007c63; 
+            }
+
+            /* Focus effect */
+            body button:focus {
+                outline: none; 
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- assigning links for buttons -->
+        <h1>Main page</h1>
+        <button onclick="gotoLink(this)" value="http://127.0.0.1:8000/info">Info</button>
+        <button onclick="gotoLink(this)" value="http://127.0.0.1:8000/get/all">Last 5 days</button>
+        <button onclick="gotoLink(this)" value="http://127.0.0.1:8000/get/known">Known CVE</button>
+        <button onclick="gotoLink(this)" value="http://127.0.0.1:8000/get/new">Last 10 CVE</button>
+        <button onclick="gotoLink(this)" value="http://127.0.0.1:8000/get">Search</button>
+        <script>
+            function gotoLink(button) {
+                const link = button.value; // Get the value of the button which contains the URL
+                console.log(link); // This will log the URL to the console
+                window.location.href = link;
+            }
+        </script>
+    </body>
+</html>

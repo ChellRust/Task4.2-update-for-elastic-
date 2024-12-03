@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <!-- next line below is for flexible displaying on the different devices -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Just description</title>
+        <style>
+            h1 {
+                font-size: 3em; 
+                font-family: sans-serif;
+                font-weight: bold; 
+                color: #009879;  
+                text-align: center;
+                text-transform: uppercase; 
+                background-color: #f1f1f1;
+                border-radius: 8px;
+            }
+
+            /* TABLE CONFIGURATIONS */
+            .content-table {
+                border-collapse: collapse;
+                border-radius: 8px;
+                overflow: hidden;
+                width: 80%;
+                table-layout: fixed;
+                margin: 0 auto;
+                font-size: 1em;
+                font-family: sans-serif; 
+            }
+        
+            .content-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .content-table th,
+            .content-table td {
+                padding: 15px 15px;
+            }
+
+            .content-table td:first-child, .content-table th:first-child {
+                width: 5%; 
+                text-align: center;
+            }
+
+            .content-table tbody tr{
+                border-bottom: 1px solid #dddddd;
+            } 
+
+            .content-table tbody tr td:first-child {
+                vertical-align: top;
+            }
+
+            .content-table tbody tr td{
+                border-right: 1px solid #dddddd;
+                border-left: 1px solid #dddddd;
+            }
+
+            .content-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .content-table tbody tr:last-of-type {
+                border-bottom: 8px solid #009879;
+            }
+
+            .content-table tbody td{
+                text-align: left;
+            }
+
+            /* Search bar and button style */
+            .search-container {
+                text-align: center; 
+                margin-bottom: 20px;
+            }
+
+            .search-container input {
+                width: 50%; 
+                padding: 12px 20px; 
+                font-size: 1em; 
+                border-radius: 8px;
+                border: 1px solid #009879;
+                margin-right: 10px; 
+            }
+
+            .search-container button {
+                background-color: #009879; 
+                color: white; 
+                font-size: 1em; 
+                padding: 12px 24px; 
+                border: none; 
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            .search-container button:hover {
+                background-color: #007c63; 
+            }
+
+            .search-container button:focus {
+                outline: none; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>/get</h1>
+
+        <!-- Search form for querying vulnerabilities -->
+        <div class="search-container">
+            <form action="/get" method="get">
+                <input type="text" id="query" name="query" value="{{ query }}" placeholder="Enter search keyword" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>CVE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- loop for correct displaying every value from python code -->
+                {% if data %}
+                    {% for item in data %}
+                    <tr>
+                        <td>{{ item.Number }}</td>
+                        <td>
+                            Date: {{ item.dateAdded }}<br>
+                            CVE: {{ item.cveID }}<br>
+                            Vendor Project: {{ item.vendorProject }}<br>
+                            Product: {{ item.product }}<br>
+                            Vulnerability Name: {{ item.vulnerabilityName }}<br>
+                            Short Description: {{ item.shortDescription }}<br>
+                            Required Action: {{ item.requiredAction }}<br>
+                            Due Date: {{ item.dueDate }}<br>
+                            Known Ransomware Campaign Use: {{ item.knownRansomwareCampaignUse }}<br>
+                            Notes: {{ item.notes }}<br>
+                            CWEs: {{ item.cwes | join(", ") }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="2" style="text-align: center; color: red;">No results found for the query: "{{ query }}"</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </body>
+</html>

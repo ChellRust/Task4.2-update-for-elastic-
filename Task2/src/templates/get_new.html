@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <!-- next line below is for flexible displaying on the different devices -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Just description</title>
+        <style>
+
+            h1 {
+                font-size: 3em; 
+                font-family: sans-serif;
+                font-weight: bold; 
+                color: #009879;  
+                text-align: center;
+                text-transform: uppercase; 
+                background-color: #f1f1f1;
+                border-radius: 8px;
+            }
+
+            /* TABLE CONFIGURATIONS */
+            .content-table {
+                border-collapse: collapse;
+                border-radius: 8px;
+                overflow: hidden;
+                width: 80%;
+                table-layout: fixed;
+                margin: 0 auto;
+                font-size: 1em;
+                font-family: sans-serif; 
+            }
+        
+            .content-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .content-table th,
+            .content-table td {
+                padding: 15px 15px;
+            }
+
+            .content-table td:first-child, .content-table th:first-child {
+                width: 5%; 
+                text-align: center;
+                
+            }
+
+            .content-table tbody tr{
+                border-bottom: 1px solid #dddddd;
+            } 
+
+            .content-table tbody tr td:first-child {
+                vertical-align: top;
+            }
+
+            .content-table tbody tr td{
+                border-right: 1px solid #dddddd;
+                border-left: 1px solid #dddddd;
+            }
+
+            .content-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .content-table tbody tr:last-of-type {
+                border-bottom: 8px solid #009879;
+            }
+
+            .content-table tbody td{
+                text-align: left;
+            } 
+        </style>
+    </head>
+
+    <body>
+        <h1>/get/new</h1>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- loop for correct displaying every value from python code -->
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.Number }}</td>
+                    <td>
+                        Date: {{ item.dateAdded }}<br>
+                        CVE: {{ item.cveID }}<br>
+                        Vendor Project: {{ item.vendorProject }}<br>
+                        Product: {{ item.product }}<br>
+                        Vulnerability Name: {{ item.vulnerabilityName }}<br>
+                        Short Description: {{ item.shortDescription }}<br>
+                        Required Action: {{ item.requiredAction }}<br>
+                        Due Date: {{ item.dueDate }}<br>
+                        Known Ransomware Campaign Use: {{ item.knownRansomwareCampaignUse }}<br>
+                        Notes: {{ item.notes }}<br>
+                        CWEs: {{ item.cwes }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

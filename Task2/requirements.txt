@@ -1,0 +1,6 @@
+requests
+fastapi[standard]
+uvicorn
+#for template #new
+jinja2
+elasticsearch
